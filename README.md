@@ -42,3 +42,13 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+# Resources
+* [Stack Overflow: Using Google Map in React Component](https://stackoverflow.com/questions/48493960/using-google-map-in-react-component)
+* [Learning how React handles unknown global variables; hint: it hates 'em](https://github.com/tomchentw/react-google-maps/issues/434)
+* [Google Maps API docs tutorial: Adding a Google Map with a Marker to Your Website](https://developers.google.com/maps/documentation/javascript/adding-a-google-map)
+* [Introduction to API Calls With React and Axios](https://code.tutsplus.com/tutorials/introduction-to-api-calls-with-react-and-axios--cms-21027)
+* [NPS.gov API Guides](https://www.nps.gov/subjects/developer/guides.htm)
+* [Stack Overflow: JavaScript Split String into Object with Properties](https://stackoverflow.com/questions/45000343/javascript-split-string-into-object-with-properties)
