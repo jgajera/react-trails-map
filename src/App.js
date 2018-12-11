@@ -1,8 +1,6 @@
 /*global google*/
 import React, { Component } from 'react';
 import Map from "./map";
-// import SearchFilter from "./search";
-// import ListView from "./list";
 import Sidebar from './sidebar.js';
 import SearchBar from './searchbar.js';
 import axios from 'axios';
@@ -62,19 +60,7 @@ class App extends Component {
                 latLong: data.latLong
             })))
             .then(newData => this.setState({ startingMarkers: newData, store: newData }))
-            .then(
-                this.getGoogleMaps().then((google) => {
-                    const centerPt = { lat: 40.110656, lng: -109.050415 };
-                    const map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 5,
-                        center: centerPt
-                    });
-                    // const marker = new google.maps.Marker({
-                    //     position: centerPt,
-                    //     map: map
-                    // });
-
-                })).catch(error => alert(error))
+            .catch(error => alert(error))
     }
 
     render() {
@@ -98,6 +84,7 @@ class App extends Component {
             newLatLong = foo;
 
 
+            // clean up API output to match Google Maps API requirements
             const obj1 = stateMarkers[i];
             const newKeys = { latLong: "location" };
             const renamedObj = renameKeys(obj1, newKeys);
@@ -117,32 +104,46 @@ class App extends Component {
             renamedObj.location = renamedObj2;
             renamedObj.location.lng = parseFloat(renamedObj.location.lng);
             renamedObj.location.lat = parseFloat(renamedObj.location.lat);
+            console.log(renamedObj);
+            scrubbedMarkers.push(renamedObj);
+            stateMarkers[i] = scrubbedMarkers[i];
+            console.log(scrubbedMarkers)
+            console.log(stateMarkers)
+        }
 
-            var position = renamedObj.location;
-            var title = renamedObj.name;
-            var id = renamedObj.id;
-
-            // Create a marker per location, and put into markers array.
-            var marker = new google.maps.Marker({
-                position: position,
-                title: title,
-                id: id
+        this.getGoogleMaps().then((google) => {
+            const centerPt = { lat: 39.237439, lng: -105.962835 };
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: centerPt
             });
 
-            console.log(renamedObj)
-            scrubbedMarkers.push(renamedObj);
-            console.log(scrubbedMarkers)
-        }
+            for (var j = 0; j < stateMarkers.length; j++) {
+                var position = stateMarkers[j].location;
+                var title = stateMarkers[j].name;
+
+                // Create a marker per location, and put into markers array.
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: position,
+                    title: title,
+                    id: j
+                });
+
+                console.log(marker);
+            }
+        })
+
         return (
             <div id="app">
               <div id="sidebar">
                 <h1>Adventure Finder</h1>
-                <SearchBar startMarkers={scrubbedMarkers}/>
+                <SearchBar startMarkers={stateMarkers}/>
                 <hr />
                 <h2>Fun Places</h2>
-                <Sidebar startMarkers={scrubbedMarkers}/>
+                <Sidebar startMarkers={stateMarkers}/>
               </div>
-              <Map startMarkers={scrubbedMarkers}/>
+              <Map startMarkers={stateMarkers}/>
             </div>
         )
     }
