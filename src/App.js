@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import Map from "./map";
 import Sidebar from './sidebar.js';
-import SearchBar from './searchbar.js';
 import axios from 'axios';
 
 import './App.css';
@@ -53,18 +52,19 @@ class App extends Component {
 
     componentDidMount() {
         // Once the Google Maps API has finished loading, initialize the map
-        axios.get('https://api.nps.gov/api/v1/parks?parkCode=rmnp&parkCode=&stateCode=CO&api_key=V7QlBUCnjRqP5FLGvx9bm4tjcZVNRGnWyT3BLUWk')
+        axios.get('https://api.nps.gov/api/v1/parks?stateCode=CO&api_key=V7QlBUCnjRqP5FLGvx9bm4tjcZVNRGnWyT3BLUWk')
             .then(json => json.data.data.map(data => ({
                 name: data.fullName,
                 id: data.id,
-                latLong: data.latLong
+                latLong: data.latLong,
+                cat:data.designation
             })))
             .then(newData => this.setState({ startingMarkers: newData, store: newData }))
             .catch(error => alert(error))
     }
 
     render() {
-        var stateMarkers = this.state.startingMarkers;
+                var stateMarkers = this.state.startingMarkers;
         var scrubbedMarkers = [];
 
         for (var i = 0; i < stateMarkers.length; i++) {
@@ -132,13 +132,26 @@ class App extends Component {
 
                 console.log(marker);
             }
+
+
+            function populateInfoWindow(marker, infowindow) {
+                // Check to make sure the infowindow is not already opened on this marker.
+                if (infowindow.marker !== marker) {
+                    infowindow.marker = marker;
+                    infowindow.setContent('<div class="infowindow">' + marker.title + '</div>');
+                    infowindow.open(map, marker);
+                    // Make sure the marker property is cleared if the infowindow is closed.
+                    infowindow.addListener('closeclick', function() {
+                        infowindow.setMarker = null;
+                    });
+                }
+            }
         })
 
         return (
             <div id="app">
               <div id="sidebar">
                 <h1>Adventure Finder</h1>
-                <SearchBar startMarkers={stateMarkers}/>
                 <hr />
                 <h2>Fun Places</h2>
                 <Sidebar startMarkers={stateMarkers}/>
