@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Map from './map.js'
 
 class Sidebar extends Component {
     state = {
@@ -11,7 +12,10 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <div>
+          <div class="content">
+            <div class="options">
+               <h2 class="filter-heading">Filter by Category</h2>
+
                 <select
                   id="selector"
                   value={this.state.value}
@@ -36,6 +40,8 @@ class Sidebar extends Component {
                 </li>
               ))}
           </ul>
+          </div>
+          <Map startMarkers={this.props.startMarkers}/>
           </div>
         )
 

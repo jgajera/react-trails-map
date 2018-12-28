@@ -57,14 +57,14 @@ class App extends Component {
                 name: data.fullName,
                 id: data.id,
                 latLong: data.latLong,
-                cat:data.designation
+                cat: data.designation
             })))
             .then(newData => this.setState({ startingMarkers: newData, store: newData }))
             .catch(error => alert(error))
     }
 
     render() {
-                var stateMarkers = this.state.startingMarkers;
+        var stateMarkers = this.state.startingMarkers;
         var scrubbedMarkers = [];
 
         for (var i = 0; i < stateMarkers.length; i++) {
@@ -151,12 +151,10 @@ class App extends Component {
         return (
             <div id="app">
               <div id="sidebar">
-                <h1>Adventure Finder</h1>
-                <hr />
-                <h2>Fun Places</h2>
+                <h2 class="pre-heading">Find Fun Places</h2>
+                <h1>Adventure Finder!</h1>
                 <Sidebar startMarkers={stateMarkers}/>
               </div>
-              <Map startMarkers={stateMarkers}/>
             </div>
         )
     }
