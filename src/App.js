@@ -10,7 +10,7 @@ class App extends Component {
             <div id="app">
               <div id="sidebar">
                 <h2 className="pre-heading">Find Fun Places</h2>
-                <h1>Adventure Seeker</h1>
+                <h1>Colorado Adventure Seeker</h1>
                 <Sidebar/>
               </div>
             </div>

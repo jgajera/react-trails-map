@@ -19,7 +19,7 @@ body {
 
 #sidebar {
     text-align: center;
-    background: #1b1b1b;
+    background: #131447;
     color: white;
 }
 
@@ -44,14 +44,14 @@ h1 {
 
 #sidebar ul li {
     list-style: none;
-    border-bottom: 1px dashed #757575;
+    border-bottom: 1px dashed #ffe000;
     padding-left: 5px;
     margin-bottom: 5px;
-    border-left: 4px solid #ffe000;
+    border-left: 4px solid #dd2e44;
 }
 
 #sidebar ul li:hover {
-    background: #3c3c3c;
+    background: #0D0D0D;
     transition: background 0.3s;
 }
 
@@ -60,19 +60,29 @@ h1 {
     text-decoration-style: dotted;
     text-decoration-color: white;
     font-weight: 600;
-    font-size: 100%;
 }
 
 li h3 {
     margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-family:monospace;
 }
 
 .toggle p {
-    font-size: 70%;
+    font-style: italic;
+}
+
+.toggle p strong {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style:none;
 }
 
 .toggle {
     display: none;
+    font-size: 70%
 }
 
 @media only screen and (max-width:485px) {
@@ -81,45 +91,15 @@ li h3 {
     }
 }
 
-
-.animated {
-    -webkit-animation-duration: .5s;
-    animation-duration: .5s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-animation-timing-function: linear;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    -webkit-animation-iteration-count: infinite;
+.infowindow {
+    background: #dd2e44;
+    padding: 0 5px;
+    text-transform: uppercase;
+    font-weight: 900;
 }
 
-@-webkit-keyframes bounce {
-
-    0%,
-    100% {
-        -webkit-transform: translateY(0);
-    }
-
-    50% {
-        -webkit-transform: translateY(-5px);
-    }
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-.bounce {
-    -webkit-animation-name: bounce;
-    animation-name: bounce;
-    height: 1px;
-    width: 1px;
+.filter {
+    padding: 0.5px 0 20px;
+    background: #ffe02b;
+    color: #131447;
 }

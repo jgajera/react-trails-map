@@ -70,7 +70,8 @@ class Sidebar extends Component {
                 var title = filteredMarkers[j].name;
                 var url = filteredMarkers[j].url;
                 var id = filteredMarkers[j].id;
-                var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                var image = 'https://s.yimg.com/ny/api/res/1.2/aDJB1r4Xb6M.9OoHjrQSsA--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9MjA7aD0yMA--/http://media.zenfs.com/en-US/homerun/etonline.tv/53229f2abf3dba082b94d44e9d125729';
+                var defaultImg = 'http://fvwebsolutions.com/wp-content/uploads/2016/03/mapmarker.png';
 
                 // Create a marker per location, and put into markers array.
                 if (title === this.state.selectedItem.name) {
@@ -79,7 +80,7 @@ class Sidebar extends Component {
                         position: position,
                         title: title,
                         id: id,
-                        icon: image
+                        icon: defaultImg
                     });
 
                     var updatedSelectedItem = this.state.selectedItem;
@@ -87,7 +88,7 @@ class Sidebar extends Component {
                     console.log(updatedSelectedItem);
                     var allToggle = [...document.getElementsByClassName('toggle')];
                     for (var s = 0; s < allToggle.length; s++) {
-                     allToggle[s].style.display="none";
+                        allToggle[s].style.display = "none";
                         var compareURL = allToggle[s].children[0].href;
                         if (compareURL === selectedURL) {
                             if (allToggle[s].style.display === "block") {
@@ -105,7 +106,7 @@ class Sidebar extends Component {
                         position: position,
                         title: title,
                         id: id,
-                        animation: google.maps.Animation.DROP
+                        icon: image
                     });
                 }
 
@@ -133,7 +134,7 @@ class Sidebar extends Component {
     componentWillMount() {
         // Start Google Maps API loading since we know we'll soon need it
         this.getGoogleMaps();
-        axios.get('https://api.nps.gov/api/v1/parks?stateCode=CO,UT,NM,AZ&api_key=V7QlBUCnjRqP5FLGvx9bm4tjcZVNRGnWyT3BLUWk')
+        axios.get('https://api.nps.gov/api/v1/parks?stateCode=CO&api_key=V7QlBUCnjRqP5FLGvx9bm4tjcZVNRGnWyT3BLUWk')
             .then(json => json.data.data.map(data => ({
                 name: data.fullName,
                 id: data.id,
@@ -141,7 +142,7 @@ class Sidebar extends Component {
                 cat: data.designation,
                 url: data.url,
                 directions: data.directionsUrl,
-                weather: data.weatherInfo
+                description: data.description
             })))
             .then(newData => this.setState({ startingMarkers: newData, store: newData }))
             .catch(error => alert(error));
@@ -215,6 +216,7 @@ class Sidebar extends Component {
         return (
             <div className="content">
             <div className="options">
+                <div className="filter">
                <h2 className="filter-heading">Category Filter</h2>
                 <select
                   id="selector"
@@ -228,7 +230,7 @@ class Sidebar extends Component {
                     <option id="NatlMonu" value="National Monument">National Monument</option>
                     <option id="NatlRec" value="National Recreation Area">National Recreation Area</option>
                 </select>
-
+                </div>
           <ul>
           {stateValue==="All" ? (
                 startMarkers
@@ -236,8 +238,10 @@ class Sidebar extends Component {
                  <li key={markerList.id} onClick={() => this.eventListenerList(markerList)}>
                 <h3>{markerList.name}</h3>
                    <div className="toggle">
-                    <a href={markerList.url}>Website</a> / / <a href={markerList.directions}>Directions</a><br />
-                    <p>{markerList.weather}</p>
+                    <a href={markerList.url}>Website</a>/
+                    <a href={markerList.directions}>Directions</a>
+                    <p>{markerList.description}</p>
+
                    </div>
                 </li>
                 ))
@@ -249,9 +253,10 @@ class Sidebar extends Component {
                 <li key={markerList.id} onClick={() => this.eventListenerList(markerList)}>
                 <h3>{markerList.name}</h3>
                    <div className="toggle">
-                    <a href={markerList.url}>Website</a>/ /
-                    <a href={markerList.directions}>Directions</a><br />
-                    <p>{markerList.weather}</p>
+                    <a href={markerList.url}>Website</a>/
+                    <a href={markerList.directions}>Directions</a>
+                    <p>{markerList.description}</p>
+
                    </div>
                 </li>
               ))
