@@ -43,12 +43,19 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+# Additional Location Data
+* [NPS.gov API Guides](https://www.nps.gov/subjects/developer/guides.htm)
+* [Example API JSON output](https://api.nps.gov/api/v1/parks?stateCode=CO)
 
 
 # Resources
 * [Stack Overflow: Using Google Map in React Component](https://stackoverflow.com/questions/48493960/using-google-map-in-react-component)
-* [Learning how React handles unknown global variables; hint: it hates 'em](https://github.com/tomchentw/react-google-maps/issues/434)
+* [Document by Github user tomchentw: Learning how React handles unknown global variables](https://github.com/tomchentw/react-google-maps/issues/434)
 * [Google Maps API docs tutorial: Adding a Google Map with a Marker to Your Website](https://developers.google.com/maps/documentation/javascript/adding-a-google-map)
-* [Introduction to API Calls With React and Axios](https://code.tutsplus.com/tutorials/introduction-to-api-calls-with-react-and-axios--cms-21027)
-* [NPS.gov API Guides](https://www.nps.gov/subjects/developer/guides.htm)
+* [Tutsplus Tutorial: Introduction to API Calls With React and Axios](https://code.tutsplus.com/tutorials/introduction-to-api-calls-with-react-and-axios--cms-21027)
+* [NPS.gov: API Guides](https://www.nps.gov/subjects/developer/guides.htm)
+* [NPS.gov: Example API JSON output](https://api.nps.gov/api/v1/parks?stateCode=CO)
 * [Stack Overflow: JavaScript Split String into Object with Properties](https://stackoverflow.com/questions/45000343/javascript-split-string-into-object-with-properties)
+* [Stack Overflow: Check variable data type in JavaScript](https://stackoverflow.com/a/4059166)
+* [React docs: Conditional Rendering](https://reactjs.org/docs/conditional-rendering.html)
+* [Medium post: This is why we need to bind event handlers in Class Components in React](https://medium.freecodecamp.org/this-is-why-we-need-to-bind-event-handlers-in-class-components-in-react-f7ea1a6f93eb)
