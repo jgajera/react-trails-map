@@ -70,19 +70,48 @@ class Sidebar extends Component {
                 var title = filteredMarkers[j].name;
                 var url = filteredMarkers[j].url;
                 var id = filteredMarkers[j].id;
+                var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 
                 // Create a marker per location, and put into markers array.
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: position,
-                    title: title,
-                    id: id
-                });
+                if (title === this.state.selectedItem.name) {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: position,
+                        title: title,
+                        id: id,
+                        icon: image
+                    });
+
+                    var updatedSelectedItem = this.state.selectedItem;
+                    var selectedURL = updatedSelectedItem.url;
+                    console.log(updatedSelectedItem);
+                    var allToggle = [...document.getElementsByClassName('toggle')];
+                    for (var s = 0; s < allToggle.length; s++) {
+                     allToggle[s].style.display="none";
+                        var compareURL = allToggle[s].children[0].href;
+                        if (compareURL === selectedURL) {
+                            if (allToggle[s].style.display === "block") {
+                                allToggle[s].style.display = "none";
+                                console.log(allToggle[s]);
+                            } else {
+                                allToggle[s].style.display = "block";
+                            };
+                        }
+                    }
+
+                } else {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: position,
+                        title: title,
+                        id: id,
+                        animation: google.maps.Animation.DROP
+                    });
+                }
 
                 marker.addListener('click', function() {
                     populateInfoWindow(this, largeInfowindow);
                 });
-
             }
 
             function populateInfoWindow(marker, infowindow) {
@@ -172,40 +201,12 @@ class Sidebar extends Component {
 
     // function for adding an event listener to each list item so we can make the markers on the map show accordingly
     eventListenerList = (data) => {
-        this.state.selectedItem = data;
-        var selectedURL = data.url;
-        console.log(this.state.selectedItem);
-        var allToggle = [...document.getElementsByClassName('toggle')];
-        for (var s = 0; s < allToggle.length; s++) {
-            var compareURL = allToggle[s].children[0].href;
-            if (compareURL === selectedURL) {
-                if (allToggle[s].style.display === "block") {
-                    allToggle[s].style.display = "none";
-                    console.log(allToggle[s]);
-                } else {
-                    allToggle[s].style.display = "block";
-                };
-            }
-        }
+        this.setState({ selectedItem: data });
     }
-
-    initEventListeners() {
-        var allToggle = [...document.getElementsByClassName('li')];
-        console.log(allToggle);
-        for (var s = 0; s < allToggle.length; s++) {
-            allToggle[s].addEventListener('click', this.eventListenerList());
-        }
-    }
-
-    componentDidMount() {
-        this.initEventListeners();
-    }
-
 
     render() {
         console.log(this.state.startingMarkers);
         this.fixLatLong();
-        this.initEventListeners();
 
         this.generateMap();
         var stateValue = this.state.value;
@@ -235,7 +236,7 @@ class Sidebar extends Component {
                  <li key={markerList.id} onClick={() => this.eventListenerList(markerList)}>
                 <h3>{markerList.name}</h3>
                    <div className="toggle">
-                    <a href={markerList.url}>Website</a> // <a href={markerList.directions}>Directions</a><br />
+                    <a href={markerList.url}>Website</a> / / <a href={markerList.directions}>Directions</a><br />
                     <p>{markerList.weather}</p>
                    </div>
                 </li>
@@ -248,7 +249,7 @@ class Sidebar extends Component {
                 <li key={markerList.id} onClick={() => this.eventListenerList(markerList)}>
                 <h3>{markerList.name}</h3>
                    <div className="toggle">
-                    <a href={markerList.url}>Website</a>//
+                    <a href={markerList.url}>Website</a>/ /
                     <a href={markerList.directions}>Directions</a><br />
                     <p>{markerList.weather}</p>
                    </div>

@@ -4,7 +4,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    border-top:3px solid #ffe000;
+    border-top: 3px solid #ffe000;
 }
 
 #map {
@@ -52,7 +52,7 @@ h1 {
 
 #sidebar ul li:hover {
     background: #3c3c3c;
-    transition:background 0.3s;
+    transition: background 0.3s;
 }
 
 .toggle a {
@@ -79,4 +79,47 @@ li h3 {
     .content {
         grid-template-columns: unset;
     }
+}
+
+
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes bounce {
+
+    0%,
+    100% {
+        -webkit-transform: translateY(0);
+    }
+
+    50% {
+        -webkit-transform: translateY(-5px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.bounce {
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+    height: 1px;
+    width: 1px;
 }
