@@ -4,6 +4,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    border-top:3px solid #ffe000;
 }
 
 #map {
@@ -24,15 +25,15 @@ body {
 
 .pre-heading {
     letter-spacing: 5px;
-    margin-top:0;
+    margin-top: 0;
     text-transform: uppercase;
-    font-weight:100;
-    font-size:15px;
-    padding-top:15px;
+    font-weight: 100;
+    font-size: 15px;
+    padding-top: 15px;
 }
 
 h1 {
-    margin-top:0;
+    margin-top: 0;
 }
 
 #sidebar ul {
@@ -44,14 +45,38 @@ h1 {
 #sidebar ul li {
     list-style: none;
     border-bottom: 1px dashed #757575;
-    padding-left:5px;
-    margin-bottom:5px;
-    border-left:4px solid #ffe000;
+    padding-left: 5px;
+    margin-bottom: 5px;
+    border-left: 4px solid #ffe000;
 }
 
+#sidebar ul li:hover {
+    background: #3c3c3c;
+    transition:background 0.3s;
+}
+
+.toggle a {
+    color: #ffe000;
+    text-decoration-style: dotted;
+    text-decoration-color: white;
+    font-weight: 600;
+    font-size: 100%;
+}
+
+li h3 {
+    margin: 0;
+}
+
+.toggle p {
+    font-size: 70%;
+}
+
+.toggle {
+    display: none;
+}
 
 @media only screen and (max-width:485px) {
-    body {
+    .content {
         grid-template-columns: unset;
     }
 }
